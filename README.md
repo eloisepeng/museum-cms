@@ -1,2 +1,2 @@
 # museum-internal
-An internal system to control museum collections with restrict access.
+A museum collection managerment system (CMS) with restrict access.
