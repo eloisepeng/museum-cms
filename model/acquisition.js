@@ -5,9 +5,9 @@ const AcquisitionSchema = new Schema({
   item: { type: Schema.Types.ObjectId, ref: 'Cataloging' },
   donor: { type: Schema.Types.ObjectId, ref: 'Person'},
   seller: { type: Schema.Types.ObjectId, ref: 'Person'},
+  price: Number,
   date: { type: Date, required: true },
   // standard currency USD$
-  price: Number,
   condictionReport: [{
     inspector: { type: Schema.Types.ObjectId, ref: 'Employee'},
     date: Date,
@@ -16,6 +16,4 @@ const AcquisitionSchema = new Schema({
   }],
 });
 
-const Acquisition = mongoose.model('Acquisition', AcquisitionSchema);
-
-module.exports = Acquisition;
+module.exports = mongoose.model('Acquisition', AcquisitionSchema);
