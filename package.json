@@ -1,0 +1,25 @@
+{
+  "name": "museum-internal",
+  "version": "1.0.0",
+  "description": "An internal system to control museum collections with restrict access.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eloisepeng/museum-internal.git"
+  },
+  "author": "Eloise Peng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eloisepeng/museum-internal/issues"
+  },
+  "homepage": "https://github.com/eloisepeng/museum-internal#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
+  }
+}
