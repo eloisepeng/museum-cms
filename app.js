@@ -47,11 +47,13 @@ app.locals.moment = require('moment');
 // import routers
 const index = require('./routes/index');
 const collections = require('./routes/collections');
+const contacts = require('./routes/contacts');
 const employees = require('./routes/employees');
 
 // apply router middleware
 app.use('/', index);
 app.use('/collections', collections);
+app.use('/contacts', contacts);
 app.use('/employees', employees);
 
 // catch 404 and forward to error handler
