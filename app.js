@@ -1,4 +1,5 @@
 const express = require('express');
+
 const app = express();
 const path = require('path');
 const logger = require('morgan');
@@ -33,11 +34,14 @@ app.use(session({
   secret: 'eloisepeng',
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false } // only set this to true if you are in HTTPS connection
+  cookie: { secure: false }, // only set this to true if you are in HTTPS connection
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// passport config
+require('./passport');
 
 /**
  * set local variables, so you can use it in template engine
@@ -66,7 +70,7 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res, next)=> {
+app.use((err, req, res) => {
   res.send(err.message);
 });
 
@@ -78,6 +82,6 @@ const port = process.env.PORT || 3000;
 /**
  * Listen on provided port, on all network interfaces.
  */
-app.listen(port, ()=>{
-  console.log(`Server running on http://localhost:${port}`)
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
 const CatalogingSchema = new Schema({
@@ -10,20 +11,20 @@ const CatalogingSchema = new Schema({
   description: String,
   dimension: String,
   materials: String,
-  condition: String, 
-  provenance: String, 
+  condition: String,
+  provenance: String,
   exhibition: String,
   preservationHistory: String,
-  acquisitions: { type: Schema.Types.ObjectId, ref: 'Acquisition'},
+  acquisitions: { type: Schema.Types.ObjectId, ref: 'Acquisition' },
   location: { type: String, required: true },
-  imgUrl: String, 
+  imgUrl: String,
   status: {
     isDeaccessed: { type: Boolean, default: false },
     Date: Date,
-    reason: String, 
-    //method of disposal used
+    reason: String,
+    // method of disposal used
     disposalMethod: String,
-  }
+  },
 });
 
 const Cataloging = mongoose.model('Cataloging', CatalogingSchema);

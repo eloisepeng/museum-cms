@@ -25,7 +25,20 @@
     "mongoose": "^5.1.5",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.0",
+    "pug": "^2.0.3",
     "session": "^0.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-airbnb": "^1.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1"
   }
 }

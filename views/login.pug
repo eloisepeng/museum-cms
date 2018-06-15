@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h3 Log in to CMS
+  form(action="/login" method="POST")
+    input(name="username" placeholder="Username")
+    br
+    input(type="password" name="password" placeholder="Password")
+    br
+    input(type="submit", value="Login")
