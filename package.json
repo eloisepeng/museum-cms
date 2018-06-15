@@ -1,7 +1,7 @@
 {
-  "name": "museum-internal",
+  "name": "museum-cms",
   "version": "1.0.0",
-  "description": "An internal system to control museum collections with restrict access.",
+  "description": "A museum collection management system with restrict access.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
