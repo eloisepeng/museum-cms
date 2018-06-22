@@ -14,6 +14,8 @@ const PersonSchema = new Schema({
     zip: String,
   },
   phone: { type: String, required: true },
+  createdAt: { type: Date, default: new Date() },
+  status: { type: String, enum: ['Active', 'Inactive'], default: 'Active' },
 });
 
 module.exports = mongoose.model('Person', PersonSchema);

@@ -20,7 +20,7 @@ const CatalogingSchema = new Schema({
   imgUrl: String,
   status: {
     isDeaccessed: { type: Boolean, default: false },
-    Date: Date,
+    date: Date,
     reason: String,
     // method of disposal used
     disposalMethod: String,

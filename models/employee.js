@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 
 const EmployeeSchema = new Schema({
   username: { type: String, required: true },
-  name: { type: String, required: true },
+  firstname: { type: String, required: true },
+  lastname: { type: String, required: true },
   email: String,
   address: {
     num: Number,
@@ -17,6 +18,7 @@ const EmployeeSchema = new Schema({
   },
   phone: { type: String, required: true },
   role: { type: String, enum: ['Admin', 'Inspector'] },
+  createdAt: { type: Date, default: new Date() },
 });
 
 EmployeeSchema.plugin(passportLocalMongoose);
