@@ -25,17 +25,17 @@ app.use(bodyParser.json()); // parse client request data to json format
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(logger('dev')); // log requests in server console
 /**
  * you need to use session middleware to create session store
  * if you want to use passport session
-*/
+ */
 app.use(session({
   secret: 'eloisepeng',
   resave: false,
   saveUninitialized: false,
   cookie: { secure: false }, // only set this to true if you are in HTTPS connection
 }));
+app.use(logger('dev')); // log requests in server console
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -47,6 +47,12 @@ require('./passport');
  * set local variables, so you can use it in template engine
  */
 app.locals.moment = require('moment');
+
+/** custom middleware automatically adding user into templates */
+// app.use((req, res, next) => {
+//   res.locals.user = req.user;
+//   next();
+// });
 
 // import routers
 const index = require('./routes/index');
