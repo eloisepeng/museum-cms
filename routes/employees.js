@@ -1,12 +1,13 @@
 const express = require('express');
 
 const router = express.Router();
+const utils = require('../utils');
 
 const Employees = require('../models/employee');
 const passport = require('passport');
 
 // handle get and return all the collection items
-router.get('/', (req, res) => {
+router.get('/', utils.requireLogin, (req, res) => {
   Employees.find({}, (err, e) => {
     if (err) return res.send(err);
     res.render('iEmployees', { e });

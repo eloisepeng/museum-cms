@@ -1,14 +1,14 @@
 const express = require('express');
 
 const router = express.Router();
+const utils = require('../utils');
 
 const Contacts = require('../models/person');
 
 // handle get and return all contact informations
-router.get('/', (req, res) => {
+router.get('/', utils.requireLogin, (req, res) => {
   Contacts.find({}, (err, c) => {
     if (err) return next(err);
-    // res.send(`contacts------------${contacts}`);
     res.render('iContacts', { c });
   });
 });
