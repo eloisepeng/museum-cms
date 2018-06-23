@@ -1,0 +1,13 @@
+.nav-bar-col
+  .nav-container
+    img.logo(src="/img/gem-logo-blk.png" alt="Grand Egyptioan Museum")
+    ul
+      li
+        a(href="/contacts") Contact List
+      li
+        a(href="/employees") Employee List
+      li
+        a(href="/collections") Collection List
+    div
+      if (user)
+        a(href="/profile")

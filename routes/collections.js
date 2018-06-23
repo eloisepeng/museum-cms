@@ -8,9 +8,9 @@ const Collections = require('../models/cataloging');
 
 // handle get and return all the collection items
 router.get('/', utils.requireLogin, (req, res, next) => {
-  Collections.find({}, (err, collections) => {
+  Collections.find({}, (err, c) => {
     if (err) return next(err);
-    return res.send(`collections-------\n${collections}`);
+    res.render('iCollections', { c });
   });
 });
 

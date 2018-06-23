@@ -1,9 +1,16 @@
 html
   head
     title Museum CMS
+    link(rel="stylesheet" type="text/css" media="screen" href="https://fonts.googleapis.com/css?family=Encode+Sans+Condensed|Roboto|Oxygen|Raleway")
+    link(rel="stylesheet" type="text/css" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300")
+    link(rel="stylesheet" type="text/css" media="screen" href="/css/main.css")
     block style
   body
-    block content
-    block script
+    include nav-hor
+    nav.inner-container
+      include nav-col
+      .content-container
+        block content
+        block script
   foot
-    footer Copyright © Eloise Peng
+    footer Copyright © Eloise Peng 2018

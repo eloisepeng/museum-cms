@@ -7,10 +7,9 @@ const passport = require('passport');
 
 // handle get and return all the collection items
 router.get('/', (req, res) => {
-  Employees.find({}, (err, employees) => {
+  Employees.find({}, (err, e) => {
     if (err) return res.send(err);
-    res.send(`employees------------${employees}`);
-    console.log(employees);
+    res.render('iEmployees', { e });
   });
 });
 

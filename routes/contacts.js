@@ -6,9 +6,10 @@ const Contacts = require('../models/person');
 
 // handle get and return all contact informations
 router.get('/', (req, res) => {
-  Contacts.find({}, (err, contacts) => {
+  Contacts.find({}, (err, c) => {
     if (err) return next(err);
-    res.send(`contacts------------${contacts}`);
+    // res.send(`contacts------------${contacts}`);
+    res.render('iContacts', { c });
   });
 });
 
