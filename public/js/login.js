@@ -13,7 +13,7 @@ $(document).ready(() => {
     },
     imageUrl: '../img/gem-logo-wit.png',
     imageWidth: 450,
-    background: 'rgb(48, 79, 95)',
+    background: 'rgb(0, 0, 0)',
     imageAlt: 'Logo',
     animation: false,
     allowOutsideClick: false,

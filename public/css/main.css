@@ -194,19 +194,19 @@ footer {
 }
 
 #swal2-title {
-  color: rgb(183, 210, 222);
+  color: rgb(255, 255, 255);
 }
 
 .swal2-popup .swal2-input {
-  background-color: #07e8ff7a;
+  background-color: rgb(255, 255, 255);
 }
 
 .swal2-popup .swal2-styled.swal2-confirm {
-  background-color: #9E9E9E;
+  background-color: #343e48 !important;
 }
 
 .swal2-container.swal2-shown {
-  background-color: rgba(0, 0, 0, 0.67);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 /* .row {
