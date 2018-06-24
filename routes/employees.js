@@ -21,7 +21,7 @@ router.get('/login', (req, res) => {
 
 // handle login page
 router.post('/login', passport.authenticate('local'), (req, res) => {
-  console.log('logged in');
+  console.log(req.user);
   res.redirect('/collections');
 });
 
@@ -36,7 +36,8 @@ router.post('/signup', (req, res, next) => {
     Employees.register(
       new Employees({
         username: req.body.username,
-        name: req.body.name,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
         email: req.body.email,
         address: {
           num: req.body.addrNum,

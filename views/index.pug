@@ -1,2 +1,13 @@
-extends layout
-
+html
+  head
+    title Museum CMS
+    link(rel="stylesheet" type="text/css" media="screen" href="https://fonts.googleapis.com/css?family=Encode+Sans+Condensed|Roboto|Oxygen|Raleway")
+    link(rel="stylesheet" type="text/css" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300")
+    link(rel="stylesheet" type="text/css" media="screen" href="/css/main.css")
+    block style
+  body
+    include nav-hor
+    nav.index-container
+      img.index(src="/img/index.png" alt="Index")
+  foot.index-footer
+    footer Copyright © Eloise Peng 2018

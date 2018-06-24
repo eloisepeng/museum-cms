@@ -2,12 +2,11 @@
   .nav-container
     img.logo(src="/img/gem-logo-blk.png" alt="Grand Egyptioan Museum")
     ul
-      li
-        a.nav(href="/contacts") Contact List
-      li
-        a.nav(href="/employees") Employee List
-      li
-        a.nav(href="/collections") Collection List
-    div
       if (user)
-        a(href="/profile")
+        li
+          a.nav(href="/collections") Collection List
+        if (user.role === "Admin")
+          li
+            a.nav(href="/contacts") Contact List
+          li
+            a.nav(href="/employees") Employee List

@@ -28,7 +28,8 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.0",
     "pug": "^2.0.3",
-    "session": "^0.1.0"
+    "session": "^0.1.0",
+    "sweetalert2": "^7.24.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",

@@ -9,7 +9,8 @@ block content
     br
     label Name
     br
-    input(name="name" placeholder="firstname lastname" type="text")
+    input(name="firstname" placeholder="firstname" type="text")
+    input(name="lastname" placeholder="lastname" type="text")
     br
     label Email
     br
@@ -33,7 +34,7 @@ block content
     label Roles
     br
     each val in ["Admin", "Inspector"]
-      label #[input(type="radio" name="roles" value=val)] #{val}
+      label #[input(type="radio" name="role" value=val)] #{val}
       br
     label Password
     br
