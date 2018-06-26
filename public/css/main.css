@@ -238,6 +238,30 @@ footer {
 .grey {
   color:#9e9e9e;
 }
+
+.form-header {
+  height: 5rem;
+}
+
+.std-height {
+  height: 100%;
+}
+
+.del-button {
+  width: fit-content;
+  height: 3rem;
+  text-align: center;
+  font-size: 16px;
+  background-color: tomato;
+}
+
+.submit-button {
+  margin-top: 2rem;
+  height: 1.5rem;
+  width: 4rem;
+  background: slategrey;
+  color: white;
+}
 /* .row {
   display: flex;
   flex-direction: row;

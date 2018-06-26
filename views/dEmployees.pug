@@ -1,8 +1,11 @@
 extends layout
 
 block content
-  h1 Username: #{e.username}
-  button#deleteUser(uid=e._id) Delete? Think carefully!!!
+  .form-header.grey
+    .left.std-height.no-padding
+      h1 Username: #{e.username}
+    .right.std-height.no-padding
+      button.del-button#deleteUser(uid=e._id) Delete? Think carefully!!!
   form(action=`/employees/update/${e._id}` method="POST")
     label First Name
     br
@@ -37,4 +40,4 @@ block content
       each val in ['Admin', 'Inspector']
         option(value=val selected=val==e.role) #{val}
     br
-    input(type="submit")
+    input.submit-button(type="submit")
