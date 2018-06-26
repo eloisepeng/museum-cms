@@ -32,10 +32,11 @@ $(document).ready(() => {
         username: result.value[0],
         password: result.value[1],
       },
-      success(res) {
-        if (res.success) {
-          location.reload();
-        }
+      error(err) {
+        console.log(err);
+      },
+      success() {
+        location.href = '/collections';
       },
     });
   });

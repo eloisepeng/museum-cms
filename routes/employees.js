@@ -10,6 +10,19 @@ const passport = require('passport');
 router.get('/', utils.requireLogin, (req, res) => {
   Employees.find({}, (err, employees) => {
     if (err) return res.send(err);
+    employees = employees.sort((a, b) => {
+      if (a.role < b.role) return -1;
+      if (a.role > b.role) return 1;
+      return 0;
+    }).sort((a, b) => {
+      if (a.role === b.role && a.lastname < b.lastname) return -1;
+      if (a.role === b.role && a.lastname > b.lastname) return 1;
+      return 0;
+    }).sort((a, b) => {
+      if (a.role === b.role && a.lastname === b.lastname && a.lastname < b.lastname) return -1;
+      if (a.role === b.role && a.lastname === b.lastname && a.lastname > b.lastname) return 1;
+      return 0;
+    });
     Employees.count({}, (errc, count) => {
       if (errc) return res.send(errc);
       res.render('iEmployees', { employees, count });
@@ -24,8 +37,14 @@ router.get('/login', (req, res) => {
 
 // handle login page
 router.post('/login', passport.authenticate('local'), (req, res) => {
-  console.log(req.user);
-  res.redirect('/collections');
+  // Employees.find({ username: req.body.username }, (err, e) => {
+  //   e.set({ lastLogin: new Date() });
+  //   e.save();
+  // });
+  Employees.findByIdAndUpdate(req.user._id, { $set: { lastLogin: new Date() } }, (err) => {
+    if (err) res.send(err);
+    return res.redirect('/collections');
+  });
 });
 
 // render signup page
@@ -52,6 +71,7 @@ router.post('/signup', (req, res, next) => {
         },
         phone: req.body.phone,
         role: req.body.role,
+        lastLogin: new Date(),
       }),
       req.body.password,
       (err) => {

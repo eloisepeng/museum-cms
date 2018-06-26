@@ -105,7 +105,7 @@ footer {
 
 .inner-container {
   box-sizing: inherit;
-  height: 90vh;
+  height: 93vh;
   background-color: white;
   margin-left: 3rem;
   margin-right: 3rem;
@@ -220,6 +220,20 @@ footer {
   background-color: gray;
 }
 
+.no-padding {
+  padding: 0rem;
+}
+
+.list-select-bar {
+  position: relative;
+  font-family: 'Raleway';
+  background-color: #d0d0d0bb;
+  height: 1.5rem;
+}
+
+#search-input {
+  height: 1.5rem;
+}
 /* .row {
   display: flex;
   flex-direction: row;
