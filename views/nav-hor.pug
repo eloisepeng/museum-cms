@@ -4,7 +4,7 @@ nav.nav-bar-hor
       a(href="/")
         img.nav-logo(src="/img/home.png" alt="Home")
       if (user)
-        | Welcome, #{user.firstname} (#{user.role}) last login: #{moment(user.lastLogin).format('lll')}
+        a.grey Welcome, #{user.firstname} (#{user.role}) last login: #{moment(user.lastLogin).format('lll')}
     .right
       a(href="/employees/logout")
         img.nav-logo(src="/img/logout.png" alt="Logout") 

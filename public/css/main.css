@@ -234,6 +234,10 @@ footer {
 #search-input {
   height: 1.5rem;
 }
+
+.grey {
+  color:#9e9e9e;
+}
 /* .row {
   display: flex;
   flex-direction: row;

@@ -30,6 +30,22 @@ router.get('/', utils.requireLogin, (req, res) => {
   });
 });
 
+// render employees edit page
+router.get('/update/:id', utils.requireLogin, (req, res, next) => {
+  Employees.findById(req.params.id, (err, e) => {
+    if (err) return next(err);
+    res.render('dEmployees', { e });
+  });
+});
+
+// handle employees edit page
+router.post('/update/:id', utils.requireLogin, (req, res, next) => {
+  Employees.findByIdAndUpdate(req.params.id, { $set: req.body }, (err) => {
+    if (err) return next(err);
+    res.redirect('/employees');
+  });
+});
+
 // render login page
 router.get('/login', (req, res) => {
   res.render('login');
@@ -37,10 +53,6 @@ router.get('/login', (req, res) => {
 
 // handle login page
 router.post('/login', passport.authenticate('local'), (req, res) => {
-  // Employees.find({ username: req.body.username }, (err, e) => {
-  //   e.set({ lastLogin: new Date() });
-  //   e.save();
-  // });
   Employees.findByIdAndUpdate(req.user._id, { $set: { lastLogin: new Date() } }, (err) => {
     if (err) res.send(err);
     return res.redirect('/collections');
@@ -48,7 +60,7 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 });
 
 // render signup page
-router.get('/signup', (req, res) => {
+router.get('/signup', utils.requireLogin, (req, res) => {
   res.render('signup');
 });
 

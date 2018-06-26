@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  h1 Username: #{e.username}
+  button#deleteUser(uid=e._id) Delete? Think carefully!!!
+  form(action=`/employees/update/${e._id}` method="POST")
+    label First Name
+    br
+    input(name="firstname" value=e.firstname type="text")
+    br
+    label Last Name
+    br
+    input(name="lastname" value=e.lastname type="text")
+    br
+    label Phone
+    br 
+    input(name="phone" value=e.phone type="text")
+    br
+    label Email
+    br
+    input(name="email" value=e.email type="text")
+    br
+    label Address
+    br
+    input(name="address.num" value=e.address.num type="number")
+    input(name="address.street" value=e.address.street type="text")
+    br
+    input(name="address.city" value=e.address.city type="text")
+    input(name="address.province" value=e.address.province type="text")
+    br
+    input(name="address.country" value=e.address.country type="text")
+    input(name="address.zip" value=e.address.zip type="text")
+    br
+    label Role
+    br
+    select(name="role")
+      each val in ['Admin', 'Inspector']
+        option(value=val selected=val==e.role) #{val}
+    br
+    input(type="submit")
