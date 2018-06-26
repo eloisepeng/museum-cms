@@ -2,5 +2,29 @@ extends layout
 
 block content
   nav.body-container
-    p contacts ----------
-    #{c}
+    h1 #{title} (#{count})
+      a.right(href='/contacts/add') New #{title}
+        img.icon(src="/img/plus.png" alt="Plus")
+    br
+    br
+    table
+      tr
+        th Name
+        th Phone
+        th Email
+        th Address
+        th Status
+        th CreatedAt
+
+      each c in contacts
+        tr 
+          td
+            a(href=`/contacts/${c._id}`)=`${c.firstname} ${c.lastname}`
+          td=c.phone
+          td=c.email
+          td
+            if(c.address.num)
+              =`${c.address.num}`
+            =`${c.address.street}, ${c.address.city}, ${c.address.province}, ${c.address.country}, ${c.address.zip}`
+          td=c.role
+          td=c.createdAt

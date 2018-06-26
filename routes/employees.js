@@ -8,9 +8,12 @@ const passport = require('passport');
 
 // handle get and return all the collection items
 router.get('/', utils.requireLogin, (req, res) => {
-  Employees.find({}, (err, e) => {
+  Employees.find({}, (err, employees) => {
     if (err) return res.send(err);
-    res.render('iEmployees', { e });
+    Employees.count({}, (errc, count) => {
+      if (errc) return res.send(errc);
+      res.render('iEmployees', { employees, count });
+    });
   });
 });
 

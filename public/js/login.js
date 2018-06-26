@@ -1,15 +1,19 @@
 $(document).ready(() => {
   swal({
-    title: 'Sign In',
+    title: 'Hello, Stranger!',
     html:
       '<input id="swal-input1" class="swal2-input" placeholder="USERNAME">' +
-      '<input id="swal-input2" class="swal2-input" placeholder="PASSWORD">',
+      '<input id="swal-input2" class="swal2-input" placeholder="PASSWORD" type="password">',
+    // '<input id="submit-button" type="submit" value="Login">',
     focusConfirm: false,
-    preConfirm: () => {
-      return [
-        document.getElementById('swal-input1').value,
-        document.getElementById('swal-input2').value,
-      ];
+    // showConfirmButton: false,
+    preConfirm: function () {
+      return new Promise(((resolve) => {
+        resolve([
+          $('#swal-input1').val(),
+          $('#swal-input2').val(),
+        ]);
+      }));
     },
     imageUrl: '../img/gem-logo-wit.png',
     imageWidth: 450,
@@ -18,5 +22,21 @@ $(document).ready(() => {
     animation: false,
     allowOutsideClick: false,
     allowEscapeKey: false,
+    confirmButtonColor: '#343e48',
+    confirmButtonText: 'Login',
+  }).then((result) => {
+    $.ajax({
+      url: '/employees/login',
+      type: 'POST',
+      data: {
+        username: result.value[0],
+        password: result.value[1],
+      },
+      success(res) {
+        if (res.success) {
+          location.reload();
+        }
+      },
+    });
   });
 });

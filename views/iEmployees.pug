@@ -2,5 +2,32 @@ extends layout
 
 block content
   nav.body-container
-    p employees ----------
-    #{e}
+    h1 Employees (#{count})
+      a.right(href='/employees/signup') Employee Signup 
+        img.icon(src="/img/plus.png" alt="Plus")
+    br
+    br
+    table
+      tr.titles
+        th Username
+        th Name
+        th Phone
+        th Email
+        th Address
+        th Role
+        th CreatedAt
+
+      each e in employees
+        tr 
+          td=`${e.username}  `
+            a(href=`/employees/${e.username}`)
+              img.icon(src="/img/edit-blk.png" alt="Edit")     
+          td=`${e.firstname} ${e.lastname}`
+          td=e.phone
+          td=e.email
+          td
+            if(e.address.num)
+              =`${e.address.num}`
+            =`${e.address.street}, ${e.address.city}, ${e.address.province}, ${e.address.country}, ${e.address.zip}`
+          td=e.role
+          td=moment(e.createdAt).format('ll')

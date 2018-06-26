@@ -1,10 +1,7 @@
 extends layout
 
 block content
-  h3 Log in to CMS
-  form(action="/employees/login" method="POST")
-    input(name="username" placeholder="Username")
-    br
-    input(type="password" name="password" placeholder="Password")
-    br
-    input(type="submit", value="Login")
+  a(href="/collections") If the page didn't redirect, click here
+
+block script
+  script(src="/js/login.js")

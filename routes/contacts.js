@@ -7,9 +7,29 @@ const Contacts = require('../models/person');
 
 // handle get and return all contact informations
 router.get('/', utils.requireLogin, (req, res) => {
-  Contacts.find({}, (err, c) => {
+  Contacts.find({}, (err, contacts) => {
     if (err) return next(err);
-    res.render('iContacts', { c });
+    Contacts.count({}, (errc, count) => {
+      if (errc) return next(errc);
+      res.render('iContacts', { contacts, count, title: 'Contacts' });
+    });
+  });
+});
+
+// handle get and return all contact informations
+router.get('/:type', utils.requireLogin, (req, res) => {
+  Contacts.find({ type: req.params.type }, (err, contacts) => {
+    if (err) return next(err);
+    Contacts.count({ type: req.params.type }, (errc, count) => {
+      if (errc) return next(errc);
+      let title = '';
+      if (req.params.type === 'doners') {
+        title = 'Doners';
+      } else {
+        title = 'Sellers';
+      }
+      res.render('iContacts', { contacts, count, title });
+    });
   });
 });
 

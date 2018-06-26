@@ -14,6 +14,7 @@ const PersonSchema = new Schema({
     zip: String,
   },
   phone: { type: String, required: true },
+  type: { type: String, enum: ['doner', 'seller'] },
   createdAt: { type: Date, default: new Date() },
   status: { type: String, enum: ['Active', 'Inactive'], default: 'Active' },
 });
