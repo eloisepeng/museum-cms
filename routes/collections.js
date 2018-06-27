@@ -13,23 +13,23 @@ router.get('/', utils.requireLogin, (req, res, next) => {
   });
 });
 
-// // render add collection
-// router.get('/add', (req, res, next) => {
-//   res.render('addCollection');
-// });
+// render add collection
+router.get('/add', (req, res) => {
+  res.render('addCollection');
+});
 
-// // handle add new collection
-// router.post('/add', async (req, res, next) => {
-//   try {
-//     // create and save new case
-//     const c = new Collections(req.body);
-//     c.save();
-//     // redirect after procedure
-//     res.redirect('/collections');
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+// handle add new collection
+router.post('/add', async (req, res, next) => {
+  try {
+    // create and save new case
+    const c = new Collections(req.body);
+    c.save();
+    // redirect after procedure
+    res.redirect('/collections');
+  } catch (err) {
+    next(err);
+  }
+});
 
 // // render collection detail page
 // router.get('/:id', (req, res, next) => {

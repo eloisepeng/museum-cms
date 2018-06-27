@@ -1,0 +1,58 @@
+extends layout
+
+block content
+  h2 New Catalog
+  form(action='/employees/signup' method="POST")
+    label Permenent Identification Number
+    br
+    input(name="pid" type="text")
+    br
+    label Name
+    br
+    input(name="name" type="text")
+    br
+    label Artist
+    br
+    input(name="artist" type="text")
+    br
+    label Description
+    br
+    textarea(name="description" rows="4" cols="50")
+    br
+    label Dimension
+    br
+    input(name="dimension.height" placeholder="height" type="number")
+    input(name="dimension.length" placeholder="length" type="number")
+    input(name="dimension.width" placeholder="width" type="number")
+    br
+    each val in ['m', 'cm', 'mm']
+      label #[input(type="radio" name="dimension.unit" value=val)] #{val}
+    br
+    label Materials
+    br
+    input(name="materials" type="text")
+    br
+    label Condition
+    br
+    each val in ['excellent', 'good', 'fair', 'poor']
+      label #[input(type="radio" name="condition" value=val)] #{val}
+      br
+    label Archaeological Site
+    br
+    input(name="archaeoSite" type="text")
+    br
+    label Dating
+    br
+    input(name="dating" type="text")
+    br
+    label Location
+    br
+    input(name="location" type="text")
+    br
+    label Image
+    br
+    
+    br
+    input.submit-button(type='submit', value="Signup")
+
+  a(href="/login") Already have an account? Hit me..
