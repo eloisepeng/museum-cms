@@ -36,7 +36,7 @@ block content
             td=e.email
             td
               if(e.address.num)
-                =`${e.address.num}`
+                =`${e.address.num}-`
               =`${e.address.street}, ${e.address.city}, ${e.address.province}, ${e.address.country}, ${e.address.zip}`
             td=e.role
             td=moment(e.lastLogin).format('lll')

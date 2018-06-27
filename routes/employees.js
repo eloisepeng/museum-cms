@@ -37,6 +37,7 @@ router.get('/', utils.requireLogin, (req, res) => {
 router.get('/search/:name/:value', utils.requireLogin, (req, res, next) => {
   const o = {};
   o[req.params.name] = req.params.value;
+  // o[req.params.name] = { $regex: `/w*${req.params.value}w*/`, $options: 'i' };
   Employees.find(o, (err, employees) => {
     if (err) return next(err);
     res.render('iEmployees', { employees });
@@ -65,6 +66,14 @@ router.post('/update/:id', utils.requireLogin, (req, res, next) => {
   Employees.findByIdAndUpdate(req.params.id, { $set: req.body }, (err) => {
     if (err) return next(err);
     res.redirect('/employees');
+  });
+});
+
+// handle delete page
+router.post('/delete', (req, res, next) => {
+  Employees.remove({ _id: req.body.id }, (err) => {
+    if (err) return next(err);
+    res.json({ result: 'success' });
   });
 });
 
