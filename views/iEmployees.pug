@@ -5,38 +5,37 @@ block content
     h1 Employees (#{count})
       a.right.no-padding(href='/employees/signup') Employee Signup 
         img.icon(src="/img/plus.png" alt="Plus")
-    div.container
-      div.search-area.right.no-padding
-        select.list-select-bar(name="stype" style="width:fit-content;")
+    .container
+      .search-area.right.no-padding
+        select.list-select-bar#employee-field-select(name="stype" style="width:fit-content;")
           each val in ['username', 'name', 'phone', 'email']
             option(value=val) #{val}
-        input#search-input(type="text" name="search" placehold="please enter keyword")
-        button.search-btn Search
+        input.search-input#employee-search-kw(type="text" name="search" placehold="please enter keyword")
+        button.search-btn#search-employee Search
           img.icon(src="/img/search.png" alt="Search")
-      div#employee-list-container
-        table
-          tr.titles
-            th Username
-            th Name
-            th Phone
-            th Email
-            th Address
-            th Role
-            th LastLoggin
-            th CreatedAt
+      table
+        tr.titles
+          th Username
+          th Name
+          th Phone
+          th Email
+          th Address
+          th Role
+          th LastLoggin
+          th CreatedAt
 
-          each e in employees
-            tr 
-              td=`${e.username}  `
-                a(href=`/employees/update/${e._id}`)
-                  img.icon(src="/img/edit-blk.png" alt="Edit")     
-              td=`${e.firstname} ${e.lastname}`
-              td=e.phone
-              td=e.email
-              td
-                if(e.address.num)
-                  =`${e.address.num}`
-                =`${e.address.street}, ${e.address.city}, ${e.address.province}, ${e.address.country}, ${e.address.zip}`
-              td=e.role
-              td=moment(e.lastLogin).format('lll')
-              td=moment(e.createdAt).format('ll')
+        each e in employees
+          tr 
+            td=`${e.username}  `
+              a(href=`/employees/update/${e._id}`)
+                img.icon(src="/img/edit-blk.png" alt="Edit")     
+            td=`${e.firstname} ${e.lastname}`
+            td=e.phone
+            td=e.email
+            td
+              if(e.address.num)
+                =`${e.address.num}`
+              =`${e.address.street}, ${e.address.city}, ${e.address.province}, ${e.address.country}, ${e.address.zip}`
+            td=e.role
+            td=moment(e.lastLogin).format('lll')
+            td=moment(e.createdAt).format('ll')

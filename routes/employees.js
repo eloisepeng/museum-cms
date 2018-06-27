@@ -6,6 +6,10 @@ const utils = require('../utils');
 const Employees = require('../models/employee');
 const passport = require('passport');
 
+router.post('/', (req, res) => {
+  console.log(req.body);
+});
+
 // handle get and return all the collection items
 router.get('/', utils.requireLogin, (req, res) => {
   Employees.find({}, (err, employees) => {
@@ -42,7 +46,6 @@ router.get('/update/:id', utils.requireLogin, (req, res, next) => {
 router.post('/update/:id', utils.requireLogin, (req, res, next) => {
   Employees.findByIdAndUpdate(req.params.id, { $set: req.body }, (err) => {
     if (err) return next(err);
-    res.redirect('/employees');
   });
 });
 
