@@ -17,7 +17,7 @@ router.get('/', utils.requireLogin, (req, res) => {
 });
 
 // handle get and return all contact informations
-router.get('/:type', utils.requireLogin, (req, res) => {
+router.get('/search/:type', utils.requireLogin, (req, res) => {
   Contacts.find({ type: req.params.type }, (err, contacts) => {
     if (err) return next(err);
     Contacts.count({ type: req.params.type }, (errc, count) => {
@@ -33,23 +33,24 @@ router.get('/:type', utils.requireLogin, (req, res) => {
   });
 });
 
-// // render add collection
-// router.get('/add', (req, res) => {
-//   res.render('addContact');
-// });
+// render add collection
+router.get('/add', utils.requireLogin, (req, res) => {
+  res.render('addContact');
+});
 
-// // handle add new collection
-// router.post('/add', async (req, res, next) => {
-//   try {
-//     // create and save new case
-//     const c = new Contacts(req.body);
-//     c.save();
-//     // redirect after procedure
-//     res.redirect('/contacts');
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+// handle add new collection
+router.post('/add', utils.requireLogin, async (req, res, next) => {
+  try {
+    // create and save new case
+    const c = new Contacts(req.body);
+    c.type = req.body.type;
+    c.save();
+    // redirect after procedure
+    res.redirect('/contacts');
+  } catch (err) {
+    next(err);
+  }
+});
 
 // // render collection detail page
 // router.get('/:id', (req, res, next) => {

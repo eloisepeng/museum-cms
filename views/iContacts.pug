@@ -1,15 +1,25 @@
 extends layout
 
 block content
-  nav.body-container
-    h1 #{title} (#{count})
-      a.right(href='/contacts/add') New #{title}
+  .body-container
+    h1 #{title} 
+      if (count) 
+          | (#{count})
+      a.right.no-padding(href='/contacts/add') New #{title} 
         img.icon(src="/img/plus.png" alt="Plus")
-    br
+    .container
+      .search-area.right.no-padding
+        select.list-select-bar#contact-field-select(name="stype" style="width:fit-content;")
+          each val in ['firstname', 'lastname', 'phone', 'email']
+            option(value=val) #{val}
+        input.search-input#contact-search-kw(type="text" name="search" placehold="please enter keyword")
+        button.search-btn#search-contact Search
+          img.icon(src="/img/search.png" alt="Search")
     br
     table
-      tr
+      tr.titles
         th Name
+        th Type
         th Phone
         th Email
         th Address
@@ -20,11 +30,12 @@ block content
         tr 
           td
             a(href=`/contacts/${c._id}`)=`${c.firstname} ${c.lastname}`
+          td=c.type
           td=c.phone
           td=c.email
           td
             if(c.address.num)
               =`${c.address.num}`
             =`${c.address.street}, ${c.address.city}, ${c.address.province}, ${c.address.country}, ${c.address.zip}`
-          td=c.role
-          td=c.createdAt
+          td=c.status
+          td=moment(c.createdAt).format('ll')

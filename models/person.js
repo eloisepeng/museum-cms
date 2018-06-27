@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PersonSchema = new Schema({
-  name: { type: String, required: true },
+  firstname: { type: String, required: true },
+  lastname: { type: String, required: true },
   email: String,
   address: {
     num: Number,
@@ -13,8 +14,9 @@ const PersonSchema = new Schema({
     country: String,
     zip: String,
   },
+  countryCode: { type: String },
   phone: { type: String, required: true },
-  type: { type: String, enum: ['doner', 'seller'] },
+  type: { type: String, enum: ['Doner', 'Seller'] },
   createdAt: { type: Date, default: new Date() },
   status: { type: String, enum: ['Active', 'Inactive'], default: 'Active' },
 });

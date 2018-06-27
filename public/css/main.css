@@ -63,7 +63,18 @@ p {
 }
 
 tr {
-  font-size: 12px;
+  font-size: 13px;
+}
+
+td {
+  height: 4rem;
+}
+
+input {
+  width: fit-content;
+  margin: 2px;
+  height: 1.5rem;
+
 }
 
 button {
@@ -124,7 +135,8 @@ footer {
 }
 
 .nav-bar-col {
-  height: 100%;
+  min-height: 100%;
+  height: auto;
   min-width: 7rem;
   width: 15%;
   background-color: #0a0d0b;
@@ -179,7 +191,8 @@ footer {
   width: 85%;
   float: right;
   background: white;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   box-shadow: 0px 0px 1px 1px #B4B4B4;
   padding: 1rem;
   /* margin-left: 15%; */
@@ -244,6 +257,15 @@ footer {
   height: 1.5rem;
 }
 
+#select-type {
+  /* margin: 1rem; */
+  margin-bottom: 1.5rem;
+  background: #909090;
+  height: 2rem;
+  color: white;
+  font-size: 15px;
+}
+
 .search-input {
   height: 1.5rem;
 }
@@ -275,6 +297,11 @@ footer {
   background: slategrey;
   color: white;
 }
+
+.line-format {
+  line-height: 1.5rem;
+}
+
 /* .row {
   display: flex;
   flex-direction: row;

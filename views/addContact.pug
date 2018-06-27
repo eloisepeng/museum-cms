@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  h2 New Contact
+  .line-format
+    form(action='/contacts/add' method="POST")
+      select.list-select-bar#select-type(name="type")
+        each val in ['Doner', 'Seller']
+          option(value=val) #{val}
+      br
+      label First Name
+      br
+      input(name="firstname" placeholder="firstname" type="text")
+      br
+      label Last Name
+      br
+      input(name="lastname" placeholder="lastname" type="text")
+      br
+      label Address
+      br
+      input(name="address.num" placeholder="Street No." type="number")
+      input(name="address.street" placeholder="Street Name" type="text")
+      br
+      input(name="address.city" placeholder="City" type="text")
+      input(name="address.province" placeholder="Province" type="text")
+      br
+      input(name="address.country" placeholder="Country" type="text")
+      input(name="address.zip" placeholder="Zip" type="text")
+      br
+      label Email
+      br
+      input(name="email" placeholder="johndoe@domain.com" type="text")
+      br
+      label Phone (no special characters)
+      br
+      input(name="countryCode" placeholder="+1" type="text" maxlength="4" size="4")
+      input(name="phone" placeholder="604-xxx-xxxx" type="text")
+      br
+      input.submit-button(type='submit', value="Signup")

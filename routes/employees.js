@@ -34,6 +34,7 @@ router.get('/', utils.requireLogin, (req, res) => {
 //   });
 // });
 
+// handle search
 router.get('/search/:name/:value', utils.requireLogin, (req, res, next) => {
   const o = {};
   o[req.params.name] = req.params.value;

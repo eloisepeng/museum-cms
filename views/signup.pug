@@ -1,49 +1,48 @@
 extends layout
 
 block content
-  h1 New Employee Signup
-  form(action='/employees/signup' method="POST")
-    label Username
-    br
-    input(name="username" type="text")
-    br
-    label Name
-    br
-    input(name="firstname" placeholder="firstname" type="text")
-    input(name="lastname" placeholder="lastname" type="text")
-    br
-    label Email
-    br
-    input(name="email" type="email")
-    br
-    label Address
-    br
-    input(name="addrNum" placeholder="Street No." type="number")
-    input(name="addrSt" placeholder="Street Name" type="text")
-    br
-    input(name="addrCity" placeholder="City" type="text")
-    input(name="addrProv" placeholder="Province" type="text")
-    br
-    input(name="addrCountry" placeholder="Country" type="text")
-    input(name="zip" placeholder="Zip" type="text")
-    br
-    label Phone
-    br
-    input(name="phone" type="text")
-    br
-    label Roles
-    br
-    each val in ["Admin", "Inspector"]
-      label #[input(type="radio" name="role" value=val)] #{val}
+  h2 New Employee Signup
+  .line-format
+    form(action='/employees/signup' method="POST")
+      label Username
       br
-    label Password
-    br
-    input(name="password" placeholder="password" type="password")
-    br
-    label Confirm Password
-    br
-    input(name="confirmPassword" placeholder="password" type="password")
-    br
-    input.submit-button(type='submit', value="Signup")
-
-  a(href="/login") Already have an account? Hit me..
+      input(name="username" placeholder="username" type="text")
+      br
+      label Name
+      br
+      input(name="firstname" placeholder="firstname" type="text")
+      input(name="lastname" placeholder="lastname" type="text")
+      br
+      label Email
+      br
+      input(name="email" placeholder="johndoe@cms.com" type="email")
+      br
+      label Address
+      br
+      input(name="addrNum" placeholder="Street No." type="number")
+      input(name="addrSt" placeholder="Street Name" type="text")
+      br
+      input(name="addrCity" placeholder="City" type="text")
+      input(name="addrProv" placeholder="Province" type="text")
+      br
+      input(name="addrCountry" placeholder="Country" type="text")
+      input(name="zip" placeholder="Zip" type="text")
+      br
+      label Phone (no special characters)
+      br
+      input(name="phone" placeholder="03-xxx-xxxx" type="text")
+      br
+      label Roles
+      br
+      each val in ["Admin", "Inspector"]
+        label #[input(type="radio" name="role" value=val)] #{val}
+        br
+      label Password
+      br
+      input(name="password" placeholder="password" type="password")
+      br
+      label Confirm Password
+      br
+      input(name="confirmPassword" placeholder="password" type="password")
+      br
+      input.submit-button(type='submit', value="Signup")
