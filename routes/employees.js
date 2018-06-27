@@ -6,32 +6,50 @@ const utils = require('../utils');
 const Employees = require('../models/employee');
 const passport = require('passport');
 
-router.post('/', (req, res) => {
-  console.log(req.body);
-});
-
 // handle get and return all the collection items
 router.get('/', utils.requireLogin, (req, res) => {
   Employees.find({}, (err, employees) => {
     if (err) return res.send(err);
-    employees = employees.sort((a, b) => {
-      if (a.role < b.role) return -1;
-      if (a.role > b.role) return 1;
-      return 0;
-    }).sort((a, b) => {
-      if (a.role === b.role && a.lastname < b.lastname) return -1;
-      if (a.role === b.role && a.lastname > b.lastname) return 1;
-      return 0;
-    }).sort((a, b) => {
-      if (a.role === b.role && a.lastname === b.lastname && a.lastname < b.lastname) return -1;
-      if (a.role === b.role && a.lastname === b.lastname && a.lastname > b.lastname) return 1;
-      return 0;
-    });
+    employees = eSort(employees);
     Employees.count({}, (errc, count) => {
       if (errc) return res.send(errc);
       res.render('iEmployees', { employees, count });
     });
   });
+});
+
+// handle search
+// router.post('/', (req, res) => {
+//   console.log(req.body);
+//   Employees.find(req.body, (err, employees) => {
+//     console.log(employees);
+//     if (err) return res.send(err);
+//     employees = eSort(employees);
+//     Employees.count(req.body, (errc, count) => {
+//       if (errc) return res.send(errc);
+//       res.send(employees);
+//       // res.render('iEmployees', { employees, count });
+//       // res.redirect('/');
+//     });
+//   });
+// });
+
+router.get('/search/:name/:value', utils.requireLogin, (req, res, next) => {
+  const o = {};
+  o[req.params.name] = req.params.value;
+  Employees.find(o, (err, employees) => {
+    if (err) return next(err);
+    res.render('iEmployees', { employees });
+  });
+
+  // Employees.find({}, (err, employees) => {
+  //   if (err) return res.send(err);
+  //   employees = eSort(employees);
+  //   Employees.count({}, (errc, count) => {
+  //     if (errc) return res.send(errc);
+  //     res.render('iEmployees', { employees, count });
+  //   });
+  // });
 });
 
 // render employees edit page
@@ -46,6 +64,7 @@ router.get('/update/:id', utils.requireLogin, (req, res, next) => {
 router.post('/update/:id', utils.requireLogin, (req, res, next) => {
   Employees.findByIdAndUpdate(req.params.id, { $set: req.body }, (err) => {
     if (err) return next(err);
+    res.redirect('/employees');
   });
 });
 
@@ -103,6 +122,20 @@ router.post('/signup', (req, res, next) => {
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/employees/login');
+});
+
+const eSort = employees => employees.sort((a, b) => {
+  if (a.role < b.role) return -1;
+  if (a.role > b.role) return 1;
+  return 0;
+}).sort((a, b) => {
+  if (a.role === b.role && a.lastname < b.lastname) return -1;
+  if (a.role === b.role && a.lastname > b.lastname) return 1;
+  return 0;
+}).sort((a, b) => {
+  if (a.role === b.role && a.lastname === b.lastname && a.lastname < b.lastname) return -1;
+  if (a.role === b.role && a.lastname === b.lastname && a.lastname > b.lastname) return 1;
+  return 0;
 });
 
 module.exports = router;
