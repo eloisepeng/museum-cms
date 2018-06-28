@@ -7,12 +7,15 @@ const Contacts = require('../models/person');
 
 // handle get and return all contact informations
 router.get('/', utils.requireLogin, (req, res) => {
-  Contacts.find({ status: 'Active' }, (err, contacts) => {
+  Contacts.find({}, (err, contacts) => {
     if (err) return next(err);
     contacts = cSort(contacts);
-    Contacts.count({ status: 'Active' }, (errc, count) => {
-      if (errc) return next(errc);
-      res.render('iContacts', { contacts, count });
+    Contacts.count({ status: 'Active' }, (erra, aCount) => {
+      if (erra) return next(erra);
+      Contacts.count({ status: 'Inactive' }, (erri, iCount) => {
+        if (erri) return next(erri);
+        res.render('iContacts', { contacts, aCount, iCount });
+      });
     });
   });
 });
@@ -40,6 +43,7 @@ router.get('/search/:name/:value', utils.requireLogin, (req, res, next) => {
   o[req.params.name] = req.params.value;
   Contacts.find(o, (err, contacts) => {
     if (err) return next(err);
+    contacts = cSort(contacts);
     res.render('iContacts', { contacts });
   });
 });
@@ -89,16 +93,20 @@ router.post('/add', utils.requireLogin, async (req, res, next) => {
 });
 
 const cSort = contacts => contacts.sort((a, b) => {
-  if (a.type < b.type) return -1;
-  if (a.type > b.type) return 1;
+  if (a.status < b.status) return -1;
+  if (a.status > b.status) return 1;
   return 0;
 }).sort((a, b) => {
-  if (a.type === b.type && a.lastname < b.lastname) return -1;
-  if (a.type === b.type && a.lastname > b.lastname) return 1;
+  if (a.status === b.status && a.type < b.type) return -1;
+  if (a.status === b.status && a.type > b.type) return 1;
   return 0;
 }).sort((a, b) => {
-  if (a.type === b.type && a.lastname === b.lastname && a.firstname < b.firstname) return -1;
-  if (a.type === b.type && a.lastname === b.lastname && a.firstname > b.firstname) return 1;
+  if (a.status === b.status && a.type === b.type && a.lastname < b.lastname) return -1;
+  if (a.status === b.status && a.type === b.type && a.lastname > b.lastname) return 1;
+  return 0;
+}).sort((a, b) => {
+  if (a.status === b.status && a.type === b.type && a.lastname === b.lastname && a.firstname < b.firstname) return -1;
+  if (a.status === b.status && a.type === b.type && a.lastname === b.lastname && a.firstname > b.firstname) return 1;
   return 0;
 });
 

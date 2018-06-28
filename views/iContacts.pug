@@ -2,9 +2,11 @@ extends layout
 
 block content
   .body-container
-    h2 Contacts
-      if (count) 
-          | (#{count})
+    h2 Contacts 
+      if (aCount) 
+        | (Active: #{aCount}) 
+      if (iCount) 
+        | (Inactive: #{iCount})
       a.right.no-padding(href='/contacts/add') New Contact 
         img.icon(src="/img/plus.png" alt="Plus")
     .container
@@ -29,8 +31,9 @@ block content
       each c in contacts
         tr 
           td=`${c.firstname} ${c.lastname}  `
-            a(href=`/contacts/update/${c._id}`)
-              img.icon(src="/img/edit-blk.png" alt="Edit")     
+            if(c.status==='Active')
+              a(href=`/contacts/update/${c._id}`)
+                img.icon(src="/img/edit-blk.png" alt="Edit")     
           td=c.type
           td=`${c.countryCode}-${c.phone}`
           td=c.email
