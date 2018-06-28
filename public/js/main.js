@@ -11,6 +11,19 @@ $('#search-employee').click(() => {
   });
 });
 
+$('#search-contact').click(() => {
+  $.ajax({
+    url: `/contacts/search/${document.getElementById('contact-field-select').value}/${document.getElementById('contact-search-kw').value}`,
+    type: 'GET',
+    error(errr) {
+      console.log(errr);
+    },
+    success() {
+      window.location.href = `/contacts/search/${document.getElementById('contact-field-select').value}/${document.getElementById('contact-search-kw').value}`;
+    },
+  });
+});
+
 // delete function to delete document from the row
 async function deleteEntry(t, data, rdr, ddr = rdr) {
   if (rdr !== ddr) {

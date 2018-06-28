@@ -16,20 +16,30 @@ router.get('/', utils.requireLogin, (req, res) => {
   });
 });
 
-// handle get and return all contact informations
-router.get('/search/:type', utils.requireLogin, (req, res) => {
-  Contacts.find({ type: req.params.type }, (err, contacts) => {
+// // handle get and return all contact informations
+// router.get('/search/:type', utils.requireLogin, (req, res) => {
+//   Contacts.find({ type: req.params.type }, (err, contacts) => {
+//     if (err) return next(err);
+//     Contacts.count({ type: req.params.type }, (errc, count) => {
+//       if (errc) return next(errc);
+//       let title = '';
+//       if (req.params.type === 'doners') {
+//         title = 'Doners';
+//       } else {
+//         title = 'Sellers';
+//       }
+//       res.render('iContacts', { contacts, count, title });
+//     });
+//   });
+// });
+
+// handle search contact
+router.get('/search/:name/:value', utils.requireLogin, (req, res, next) => {
+  const o = {};
+  o[req.params.name] = req.params.value;
+  Contacts.find(o, (err, contacts) => {
     if (err) return next(err);
-    Contacts.count({ type: req.params.type }, (errc, count) => {
-      if (errc) return next(errc);
-      let title = '';
-      if (req.params.type === 'doners') {
-        title = 'Doners';
-      } else {
-        title = 'Sellers';
-      }
-      res.render('iContacts', { contacts, count, title });
-    });
+    res.render('iContacts', { contacts });
   });
 });
 
@@ -52,21 +62,21 @@ router.post('/add', utils.requireLogin, async (req, res, next) => {
   }
 });
 
-// // render collection detail page
-// router.get('/:id', (req, res, next) => {
-//   Contacts.findById(req.params.id, (err, c) => {
-//     if (err) return next(err);
-//     res.render('detailContact', { c });
-//   });
-// });
+// render collection detail page
+router.get('/update/:id', (req, res, next) => {
+  Contacts.findById(req.params.id, (err, c) => {
+    if (err) return next(err);
+    res.render('dContact', { c });
+  });
+});
 
-// // handle update collection
-// router.post('/update/:id', (req, res, next) => {
-//   Contacts.update({ _id: req.params.id }, { $set: req.body }, (err) => {
-//     if (err) return next(err);
-//     res.redirect('/contacts');
-//   });
-// });
+// handle update collection
+router.post('/update/:id', (req, res, next) => {
+  Contacts.findByIdAndUpdate(req.params.id, { $set: req.body }, (err) => {
+    if (err) return next(err);
+    res.redirect('/contacts');
+  });
+});
 
 // // handle delete session
 // router.post('/:id/delete', (req, res, next) => {

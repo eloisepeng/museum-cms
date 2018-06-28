@@ -2,15 +2,15 @@ extends layout
 
 block content
   .body-container
-    h1 #{title} 
+    h2 Contacts
       if (count) 
           | (#{count})
-      a.right.no-padding(href='/contacts/add') New #{title} 
+      a.right.no-padding(href='/contacts/add') New Contact 
         img.icon(src="/img/plus.png" alt="Plus")
     .container
       .search-area.right.no-padding
         select.list-select-bar#contact-field-select(name="stype" style="width:fit-content;")
-          each val in ['firstname', 'lastname', 'phone', 'email']
+          each val in ['firstname', 'lastname', 'phone(no country code)', 'email']
             option(value=val) #{val}
         input.search-input#contact-search-kw(type="text" name="search" placehold="please enter keyword")
         button.search-btn#search-contact Search
@@ -28,14 +28,15 @@ block content
 
       each c in contacts
         tr 
-          td
-            a(href=`/contacts/${c._id}`)=`${c.firstname} ${c.lastname}`
+          td=`${c.firstname} ${c.lastname}  `
+            a(href=`/contacts/update/${c._id}`)
+              img.icon(src="/img/edit-blk.png" alt="Edit")     
           td=c.type
-          td=c.phone
+          td=`${c.countryCode}-${c.phone}`
           td=c.email
           td
             if(c.address.num)
-              =`${c.address.num}`
+              =`${c.address.num}-`
             =`${c.address.street}, ${c.address.city}, ${c.address.province}, ${c.address.country}, ${c.address.zip}`
           td=c.status
           td=moment(c.createdAt).format('ll')

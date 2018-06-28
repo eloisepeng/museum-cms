@@ -58,7 +58,7 @@ router.get('/search/:name/:value', utils.requireLogin, (req, res, next) => {
 router.get('/update/:id', utils.requireLogin, (req, res, next) => {
   Employees.findById(req.params.id, (err, e) => {
     if (err) return next(err);
-    res.render('dEmployees', { e });
+    res.render('dEmployee', { e });
   });
 });
 

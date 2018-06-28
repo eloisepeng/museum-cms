@@ -1,0 +1,53 @@
+extends layout
+
+block content
+  .form-header.grey
+    .left.std-height.no-padding
+      h2 Name: #{c.firstname} #{c.lastname}
+    .right.std-height.no-padding
+      button.del-button#deleteContact(cid=c._id) Delete? Think carefully!!!
+  form(action=`/contacts/update/${c._id}` method="POST")
+    label First Name
+    br
+    input(name="firstname" value=c.firstname type="text")
+    br
+    label Last Name
+    br
+    input(name="lastname" value=c.lastname type="text")
+    br
+    label Type
+    br 
+    select(name="type")
+        each val in ['Doner', 'Seller']
+          option(value=val selected=val==c.type) #{val}
+    br
+    label Email
+    br
+    input(name="email" value=c.email type="text")
+    br
+    label Address
+    br
+    label Street No.:   
+    input(name="address.num" value=c.address.num type="number")
+    br
+    label Street Name:  
+    input(name="address.street" value=c.address.street type="text")
+    br
+    label City:   
+    input(name="address.city" value=c.address.city type="text")
+    br
+    label Province:   
+    input(name="address.province" value=c.address.province type="text")
+    br
+    label Country:  
+    input(name="address.country" value=c.address.country type="text")
+    br
+    label Zip:  
+    input(name="address.zip" value=c.address.zip type="text")
+    br
+    label Phone
+    br
+    input(name="countryCode" value=c.countryCode type="text" maxlength="4" size="4")
+    input(name="phone" value=c.phone type="text")
+    br
+    input.submit-button(type="submit")
