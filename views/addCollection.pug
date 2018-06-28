@@ -3,7 +3,7 @@ extends layout
 block content
   h2 New Catalog
   .line-format
-    form(action='/employees/signup' method="POST")
+    form(action='/collections/add' method="POST")
       label Permenent Identification Number
       br
       input(name="pid" type="text")
@@ -49,8 +49,13 @@ block content
       label Location
       br
       input(name="location" type="text")
-      //- br
-      //- label Image
-      //- br      
       br
-      input.submit-button(type='submit', value="Signup")
+      //- label Acquisitions
+      //- br
+      //- input(name="acquisitions" type="text")
+      //- br
+      label Image
+      br
+      input(type="hidden" role="uploadcare-uploader" name="imgUrl" data-crop="" data-images-only="true")
+      br
+      input.submit-button(type='submit', value="Add")

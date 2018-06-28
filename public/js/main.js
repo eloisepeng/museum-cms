@@ -24,6 +24,16 @@ $('#search-contact').click(() => {
   });
 });
 
+// remove a user
+$('#deleteUser').click(function () {
+  deleteEntry(this, 'uid', '/employees');
+});
+
+// deactivate a client
+$('#delContact').click(function () {
+  deleteEntry(this, 'cid', '/contacts');
+});
+
 // delete function to delete document from the row
 async function deleteEntry(t, data, rdr, ddr = rdr) {
   if (rdr !== ddr) {
@@ -42,8 +52,7 @@ async function deleteEntry(t, data, rdr, ddr = rdr) {
     if (result.value) {
       const id = $(t).attr(data);
       const url = `${rdr}/delete`;
-      console.log(id);
-      console.log(url);
+
       $.ajax({
         type: 'POST',
         url,
@@ -61,27 +70,3 @@ async function deleteEntry(t, data, rdr, ddr = rdr) {
     }
   });
 }
-
-// remove a user
-$('#deleteUser').click(function () {
-  deleteEntry(this, 'uid', '/employees');
-});
-
-// deactivate a client
-$('#delContact').click(function () {
-  deleteEntry(this, 'cid', '/contacts');
-
-  // $.ajax({
-  //   type: 'POST',
-  //   url: `/contacts/$(this).attr(cid)/delete`,
-  //   success: function (res) {
-  //     if (res.result === 'success') {
-  //       swal(
-  //         'Deleted!',
-  //         'Your contact has been deleted.',
-  //         'success',
-  //       ).then(() => { window.location.href = '/contacts'; });
-  //     }
-  //   },
-  // });
-});

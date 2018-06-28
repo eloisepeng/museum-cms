@@ -1,7 +1,35 @@
 extends layout
 
 block content
-  nav.body-container
-    p collections ----------
-    #{c}
-    #{user}
+  .body-container
+    h2 Collections 
+      if (count) 
+        | (#{count})
+      a.right.no-padding(href='/collections/add') New Collection  
+        img.icon(src="/img/plus.png" alt="Plus")
+    .container
+      .search-area.right.no-padding
+        select.list-select-bar#collection-field-select(name="stype" style="width:fit-content;")
+          each val in ['name']
+            option(value=val) #{val}
+        input.search-input#collection-search-kw(type="text" name="search" placehold="please enter keyword")
+        button.search-btn#search-collection Search
+          img.icon(src="/img/search.png" alt="Search")
+    br
+    table
+      tr.titles
+        th
+        th Name
+        th PID
+        th Location
+        th Condiction
+
+      each c in collections
+        tr
+          td
+            a(href=`/collections/details/${c._id}`)
+              img(src=c.imgUrl alt=c.name)
+          td=c.name
+          td=c.pid
+          td=c.location
+          td=c.condiction

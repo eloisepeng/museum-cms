@@ -7,9 +7,8 @@ const CatalogingSchema = new Schema({
   pid: { type: String, required: true },
   name: { type: String, required: true },
   // artist or creator name
-  artist: { type: String, default: 'n/a' },
+  artist: { type: String },
   description: String,
-  // unit: cm
   dimension: {
     height: Number,
     length: Number,
@@ -21,7 +20,7 @@ const CatalogingSchema = new Schema({
   archaeoSite: String,
   dating: String,
   // preservationHistory: [String],
-  acquisitions: { type: Schema.Types.ObjectId, ref: 'Acquisition' },
+  // acquisitions: { type: Schema.Types.ObjectId, ref: 'Acquisition' },
   location: { type: String, required: true },
   imgUrl: String,
   status: {
