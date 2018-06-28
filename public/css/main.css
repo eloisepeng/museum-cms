@@ -302,6 +302,14 @@ footer {
   line-height: 1.5rem;
 }
 
+.long-input {
+  width: 14rem;
+}
+
+#delContact {
+  padding: 0.8rem;
+}
+
 /* .row {
   display: flex;
   flex-direction: row;

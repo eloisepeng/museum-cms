@@ -5,7 +5,7 @@ block content
     .left.std-height.no-padding
       h2 Name: #{c.firstname} #{c.lastname}
     .right.std-height.no-padding
-      button.del-button#deleteContact(cid=c._id) Delete? Think carefully!!!
+      button.del-button#delContact(cid=c._id) Delete? Think carefully!!!
   form(action=`/contacts/update/${c._id}` method="POST")
     label First Name
     br
@@ -23,7 +23,7 @@ block content
     br
     label Email
     br
-    input(name="email" value=c.email type="text")
+    input.long-input(name="email" value=c.email type="text")
     br
     label Address
     br
@@ -31,7 +31,7 @@ block content
     input(name="address.num" value=c.address.num type="number")
     br
     label Street Name:  
-    input(name="address.street" value=c.address.street type="text")
+    input.long-input(name="address.street" value=c.address.street type="text")
     br
     label City:   
     input(name="address.city" value=c.address.city type="text")

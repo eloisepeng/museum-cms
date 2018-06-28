@@ -71,8 +71,8 @@ router.post('/update/:id', utils.requireLogin, (req, res, next) => {
 });
 
 // handle delete page
-router.post('/delete', (req, res, next) => {
-  Employees.remove({ _id: req.body.id }, (err) => {
+router.post('/delete', utils.requireLogin, (req, res, next) => {
+  Employees.findOneAndRemove(req.body.id, (err) => {
     if (err) return next(err);
     res.json({ result: 'success' });
   });
@@ -97,7 +97,7 @@ router.get('/signup', utils.requireLogin, (req, res) => {
 });
 
 // handle signup page
-router.post('/signup', (req, res, next) => {
+router.post('/signup', utils.requireLogin, (req, res, next) => {
   if (req.body.password === req.body.confirmPassword) {
     Employees.register(
       new Employees({
@@ -143,8 +143,8 @@ const eSort = employees => employees.sort((a, b) => {
   if (a.role === b.role && a.lastname > b.lastname) return 1;
   return 0;
 }).sort((a, b) => {
-  if (a.role === b.role && a.lastname === b.lastname && a.lastname < b.lastname) return -1;
-  if (a.role === b.role && a.lastname === b.lastname && a.lastname > b.lastname) return 1;
+  if (a.role === b.role && a.lastname === b.lastname && a.firstname < b.firstname) return -1;
+  if (a.role === b.role && a.lastname === b.lastname && a.firstname > b.firstname) return 1;
   return 0;
 });
 

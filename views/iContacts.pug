@@ -10,7 +10,7 @@ block content
     .container
       .search-area.right.no-padding
         select.list-select-bar#contact-field-select(name="stype" style="width:fit-content;")
-          each val in ['firstname', 'lastname', 'phone(no country code)', 'email']
+          each val in ['firstname', 'lastname', 'phone', 'email']
             option(value=val) #{val}
         input.search-input#contact-search-kw(type="text" name="search" placehold="please enter keyword")
         button.search-btn#search-contact Search
