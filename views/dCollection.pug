@@ -2,5 +2,29 @@ extends layout
 
 block content
   .form-header.grey
-    .left.std-height.no-padding
+    .left.std-height.no-padding#detail-head
       h2 Name: #{c.name}
+    .right.std-height.no-padding
+      button.upd-button#updContact(cid=c._id) Update
+      button.del-button#delContact(cid=c._id) Delete? Think carefully!!!
+  .container
+    .profile-img
+      img(src=c.imgUrl alt=c.name)
+    .profile-detail
+      ul
+        li PID: #{c.pid}
+        li Description #{c.description}, 
+        if (c.artist)
+          li Artist: #{c.artist}, 
+        li Dimension: 
+          if (c.dimension.height)
+            | #{c.dimension.height} #{c.dimension.unit}, 
+          if (c.dimension.length)
+            | #{c.dimension.length} #{c.dimension.unit}, 
+          if (c.dimension.width)
+            | #{c.dimension.width} #{c.dimension.unit}, 
+        li Materials: #{c.materials}, 
+        li Condition: #{c.condition}, 
+        li Archaeological Site: #{c.archaeoSite}, 
+        li Dating: #{c.dating}, 
+        li Location: #{c.location}

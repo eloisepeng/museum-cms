@@ -38,6 +38,7 @@ router.post('/add', async (req, res, next) => {
 router.get('/details/:id', (req, res, next) => {
   Collections.findById(req.params.id, (err, c) => {
     if (err) return next(err);
+    console.log(c);
     res.render('dCollection', { c });
   });
 });
