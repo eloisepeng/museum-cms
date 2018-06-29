@@ -224,6 +224,10 @@ footer {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
+#swal2-content {
+  color: #da3c3c;
+}
+
 .titles {
   font-size: 16px;
   font-weight: bolder;

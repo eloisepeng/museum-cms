@@ -41,7 +41,53 @@ $('#updCollection').click(function () {
 
 // deaccesse a collection item
 $('#delCollection').click(function () {
-  deleteEntry(this, 'cid', '/collections');
+  const id = $(this).attr('cid');
+  swal({
+    title: 'Delete',
+    text: 'Are you sure?',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonColor: '#343e48',
+    background: 'rgb(44, 49, 51)',
+    confirmButtonColor: '#d33',
+  }).then((confirm) => {
+    if (confirm.value) {
+      swal({
+        title: 'Deaccessing',
+        html:
+          '<textarea id="swal-input1" placeholder="Deaccess Reason Required" rows="8" cols="70"></textarea>' +
+          '<input id="swal-input2" class="swal2-input" placeholder="Disposal Method">',
+        preConfirm: function () {
+          return new Promise(((resolve) => {
+            resolve([
+              $('#swal-input1').val(),
+              $('#swal-input2').val(),
+            ]);
+          }));
+        },
+        background: 'rgb(44, 49, 51)',
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Submit',
+      }).then((result) => {
+        $.ajax({
+          url: '/collections/delete',
+          type: 'POST',
+          data: {
+            id,
+            reason: result.value[0],
+            disposalMethod: result.value[1],
+          },
+          error(err) {
+            console.log(err);
+          },
+          success() {
+            window.location.href = '/collections';
+          },
+        });
+      });
+    }
+  });
 });
 
 // deactivate a client
@@ -65,9 +111,10 @@ async function deleteEntry(t, data, rdr, ddr = rdr) {
     text: "You won't be able to revert this!",
     type: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
     confirmButtonText: 'Yes, delete it!',
+    cancelButtonColor: '#343e48',
+    background: 'rgb(44, 49, 51)',
+    confirmButtonColor: '#d33',
   }).then((result) => {
     if (result.value) {
       const id = $(t).attr(data);

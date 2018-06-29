@@ -51,8 +51,7 @@ router.get('/update/:id', utils.requireLogin, (req, res, next) => {
 });
 
 // handle update collection
-router.post('/update/:id', (req, res, next) => {
-  console.log(req.params.id);
+router.post('/update/:id', utils.requireLogin, (req, res, next) => {
   Collections.findByIdAndUpdate(req.params.id, { $set: req.body }, (err) => {
     if (err) return next(err);
     res.redirect('/collections');
@@ -60,15 +59,18 @@ router.post('/update/:id', (req, res, next) => {
 });
 
 // handle delete session
-router.post('/:id/delete', (req, res, next) => {
-  // Collections.findById(req.params.id, async (err, c) => {
-  //   if (err) return next(err);
-  //   if (c.status.isDeaccessed === true) return res.send('------------collection not exists----------');
-  //   c.status.isDeaccessed = true;
-  //   c.status.date = Date.now();
-  //   await c.save();
-  //   return res.send('-----------delete flagged------------');
-  // });
+router.post('/delete', utils.requireLogin, (req, res, next) => {
+  Collections.findById({ _id: req.body.id }, (err, c) => {
+    if (err) return next(err);
+    c.status.isDeaccessed = true;
+    c.status.date = Date.now();
+    c.status.reason = req.body.reason;
+    c.status.disposalMethod = req.body.disposalMethod;
+    c.save((errs) => {
+      if (errs) return next(errs);
+      res.redirect('/collections');
+    });
+  });
 });
 
 module.exports = router;
