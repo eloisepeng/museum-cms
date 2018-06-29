@@ -24,6 +24,19 @@ $('#search-contact').click(() => {
   });
 });
 
+$('#search-collection').click(() => {
+  $.ajax({
+    url: `/collections/search/${document.getElementById('collection-field-select').value}/${document.getElementById('collection-search-kw').value}`,
+    type: 'GET',
+    error(errr) {
+      console.log(errr);
+    },
+    success() {
+      window.location.href = `/collections/search/${document.getElementById('collection-field-select').value}/${document.getElementById('collection-search-kw').value}`;
+    },
+  });
+});
+
 // update a collection item
 $('#updCollection').click(function () {
   const id = $(this).attr('cid');

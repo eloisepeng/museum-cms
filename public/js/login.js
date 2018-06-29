@@ -5,7 +5,7 @@ $(document).ready(() => {
       '<input id="swal-input1" class="swal2-input" placeholder="USERNAME">' +
       '<input id="swal-input2" class="swal2-input" placeholder="PASSWORD" type="password">',
     // '<input id="submit-button" type="submit" value="Login">',
-    // focusConfirm: false,
+    focusConfirm: true,
     // showConfirmButton: false,
     preConfirm: function () {
       return new Promise(((resolve) => {

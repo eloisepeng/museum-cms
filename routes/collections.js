@@ -9,10 +9,8 @@ const Collections = require('../models/cataloging');
 router.get('/', utils.requireLogin, (req, res, next) => {
   Collections.find({ status: { isDeaccessed: false } }, (err, collections) => {
     if (err) return next(err);
-    Collections.count({ status: { isDeaccessed: false } }, (erra, count) => {
-      if (erra) return next(erra);
-      res.render('iCollections', { collections, count });
-    });
+    collections = cSort(collections);
+    res.render('iCollections', { collections, count: collections.length });
   });
 });
 
@@ -32,6 +30,20 @@ router.post('/add', utils.requireLogin, async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+});
+
+// handle search collections
+router.get('/search/:name/:value', utils.requireLogin, (req, res, next) => {
+  const query = {};
+  query[req.params.name] = {
+    $regex: req.params.value,
+    $options: 'i', // case insensitivity to match upper and lower cases. For an example, see
+  };
+  Collections.find(query, (err, collections) => {
+    if (err) return next(err);
+    collections = cSort(collections);
+    res.render('iCollections', { collections, count: collections.length });
+  });
 });
 
 // render collection detail page
@@ -71,6 +83,12 @@ router.post('/delete', utils.requireLogin, (req, res, next) => {
       res.redirect('/collections');
     });
   });
+});
+
+const cSort = collections => collections.sort((a, b) => {
+  if (a.pid < b.pid) return -1;
+  if (a.pid > b.pid) return 1;
+  return 0;
 });
 
 module.exports = router;

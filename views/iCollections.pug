@@ -10,7 +10,7 @@ block content
     .container
       .search-area.right.no-padding
         select.list-select-bar#collection-field-select(name="stype" style="width:fit-content;")
-          each val in ['name']
+          each val in ['pid', 'name', 'description', 'materials', 'condition', 'dating', 'archaeoSite', 'location']
             option(value=val) #{val}
         input.search-input#collection-search-kw(type="text" name="search" placehold="please enter keyword")
         button.search-btn#search-collection Search

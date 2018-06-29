@@ -11,10 +11,7 @@ router.get('/', utils.requireLogin, (req, res) => {
   Employees.find({}, (err, employees) => {
     if (err) return res.send(err);
     employees = eSort(employees);
-    Employees.count({}, (errc, count) => {
-      if (errc) return res.send(errc);
-      res.render('iEmployees', { employees, count });
-    });
+    res.render('iEmployees', { employees, count: employees.length });
   });
 });
 
@@ -34,39 +31,31 @@ router.get('/', utils.requireLogin, (req, res) => {
 //   });
 // });
 
-// handle search
-router.get('/search/:name/:value', utils.requireLogin, (req, res, next) => {
-  const o = {};
-  o[req.params.name] = req.params.value;
-  // o[req.params.name] = { $regex: `/w*${req.params.value}w*/`, $options: 'i' };
-  Employees.find(o, (err, employees) => {
-    if (err) return next(err);
-    res.render('iEmployees', { employees });
-  });
-
-  // Employees.find({}, (err, employees) => {
-  //   if (err) return res.send(err);
-  //   employees = eSort(employees);
-  //   Employees.count({}, (errc, count) => {
-  //     if (errc) return res.send(errc);
-  //     res.render('iEmployees', { employees, count });
-  //   });
-  // });
-});
-
-
 /*
 * FROM ET
+* handle search by regex and case insensitve
 * */
+router.get('/search/:name/:value', utils.requireLogin, (req, res, next) => {
+  const query = {};
+  query[req.params.name] = {
+    $regex: req.params.value,
+    $options: 'i', // case insensitivity to match upper and lower cases. For an example, see
+  };
+  Employees.find(query, (err, employees) => {
+    if (err) return next(err);
+    employees = eSort(employees);
+    res.render('iEmployees', { employees, count: employees.length }); // Employees.count(), counts everything in model, this only counts the length of the result
+  });
+});
+
+// handle search (need exact input)
 // router.get('/search/:name/:value', utils.requireLogin, (req, res, next) => {
-//   const query = {};
-//   query[req.params.name] = {
-//     $regex: req.params.value,
-//     $options: 'i', // case insensitivity to match upper and lower cases. For an example, see
-//   };
-//   Employees.find(query, (err, employees) => {
+//   const o = {};
+//   o[req.params.name] = req.params.value;
+//   // o[req.params.name] = { $regex: `/w*${req.params.value}w*/`, $options: 'i' };
+//   Employees.find(o, (err, employees) => {
 //     if (err) return next(err);
-//     res.render('iEmployees', { employees, count: employees.length }); // Employees.count(), counts everything in model, this only counts the length of the result
+//     res.render('iEmployees', { employees });
 //   });
 // });
 

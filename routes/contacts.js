@@ -39,12 +39,15 @@ router.get('/', utils.requireLogin, (req, res) => {
 
 // handle search contact
 router.get('/search/:name/:value', utils.requireLogin, (req, res, next) => {
-  const o = {};
-  o[req.params.name] = req.params.value;
-  Contacts.find(o, (err, contacts) => {
+  const query = {};
+  query[req.params.name] = {
+    $regex: req.params.value,
+    $options: 'i', // case insensitivity to match upper and lower cases. For an example, see
+  };
+  Contacts.find(query, (err, contacts) => {
     if (err) return next(err);
     contacts = cSort(contacts);
-    res.render('iContacts', { contacts });
+    res.render('iContacts', { contacts, count: contacts.length });
   });
 });
 
