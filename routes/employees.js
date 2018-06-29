@@ -54,6 +54,22 @@ router.get('/search/:name/:value', utils.requireLogin, (req, res, next) => {
   // });
 });
 
+
+/*
+* FROM ET
+* */
+// router.get('/search/:name/:value', utils.requireLogin, (req, res, next) => {
+//   const query = {};
+//   query[req.params.name] = {
+//     $regex: req.params.value,
+//     $options: 'i', // case insensitivity to match upper and lower cases. For an example, see
+//   };
+//   Employees.find(query, (err, employees) => {
+//     if (err) return next(err);
+//     res.render('iEmployees', { employees, count: employees.length }); // Employees.count(), counts everything in model, this only counts the length of the result
+//   });
+// });
+
 // render employees edit page
 router.get('/update/:id', utils.requireLogin, (req, res, next) => {
   Employees.findById(req.params.id, (err, e) => {
