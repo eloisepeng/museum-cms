@@ -24,14 +24,34 @@ $('#search-contact').click(() => {
   });
 });
 
-// remove a user
-$('#deleteUser').click(function () {
-  deleteEntry(this, 'uid', '/employees');
+// update a collection item
+$('#updCollection').click(function () {
+  const id = $(this).attr('cid');
+  $.ajax({
+    url: `/collections/update/${id}`,
+    type: 'GET',
+    error(errr) {
+      console.log(errr);
+    },
+    success() {
+      window.location.href = `/collections/update/${id}`;
+    },
+  });
+});
+
+// deaccesse a collection item
+$('#delCollection').click(function () {
+  deleteEntry(this, 'cid', '/collections');
 });
 
 // deactivate a client
 $('#delContact').click(function () {
   deleteEntry(this, 'cid', '/contacts');
+});
+
+// remove a user
+$('#deleteUser').click(function () {
+  deleteEntry(this, 'uid', '/employees');
 });
 
 // delete function to delete document from the row

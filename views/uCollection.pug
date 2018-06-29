@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  .form-header.grey
+    .left.std-height.no-padding
+      h2 PID: #{c.pid}
+  form(action=`/collections/update/${c._id}` method="POST")
+    label Name
+    br
+    input(name="name" value=c.name type="text")
+    br
+    label Artist
+    br
+    input(name="artist" value=c.artist type="text")
+    br
+    label Description
+    br
+    textarea(name="description" value=c.description rows="4" cols="50")
+    br
+    label Dimension
+    br
+    input(name="dimension.height" value=c.dimension.height type="number")
+    input(name="dimension.length" value=c.dimension.length type="number")
+    input(name="dimension.width" value=c.dimension.width type="number")
+    br
+    each val in ['m', 'cm', 'mm']
+      label #[input(type="radio" name="dimension.unit" value=val checked=val==c.dimension.unit)] #{val}
+    br
+    label Materials
+    br
+    input(name="materials" value=c.materials type="text")
+    br
+    label Condition
+    br
+    each val in ['excellent', 'good', 'fair', 'poor']
+      label #[input(type="radio" name="condition" value=val checked=val==c.condition)] #{val}
+      br
+    label Archaeological Site
+    br
+    input(name="archaeoSite" value=c.archaeoSite type="text")
+    br
+    label Dating
+    br
+    input(name="dating" value=c.dating type="text")
+    br
+    label Location
+    br
+    input(name="location" value=c.location type="text")
+    br
+    input.submit-button(type='submit', value="Update")

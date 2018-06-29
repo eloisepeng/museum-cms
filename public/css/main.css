@@ -303,12 +303,43 @@ footer {
 .profile-img {
   width: 35%;
   float: left;
+  border-style: solid;
 }
 
 .profile-detail {
   width: 65%;
   float: right;
   padding-top: 1rem;
+}
+
+.profile-container {
+  height: 30rem;
+  width: 15rem;
+  border-style: solid;
+  float: left;
+  margin: 1rem;
+}
+
+.profile-avatar {
+  height: 15rem;
+  width: 14.7rem;
+}
+
+.profile-description {
+  height: 14.65rem;
+  width: 14.65rem;
+  border-top: 2px solid rgb(73, 73, 73);
+  background: #b4b4b494;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0a0d0b;
+}
+
+.profile-pid {
+  font-size: 13px;
 }
 
 #delContact {

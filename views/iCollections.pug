@@ -16,20 +16,15 @@ block content
         button.search-btn#search-collection Search
           img.icon(src="/img/search.png" alt="Search")
     br
-    table
-      tr.titles
-        th
-        th Name
-        th PID
-        th Location
-        th Condiction
-
+    .profile-list
       each c in collections
-        tr
-          td
+        .profile-container
+          .profile-avatar
             a(href=`/collections/details/${c._id}`)
-              img(src=c.imgUrl alt=c.name)
-          td=c.name
-          td=c.pid
-          td=c.location
-          td=c.condiction
+              img(src=c.imgUrl alt=c.name width='230px')
+          .profile-description
+            ul
+              li.profile-name=c.name
+              li.profile-pid=c.pid
+              li=c.location
+              li=c.condiction
