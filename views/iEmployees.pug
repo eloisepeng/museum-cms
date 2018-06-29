@@ -10,7 +10,7 @@ block content
     .container
       .search-area.right.no-padding
         select.list-select-bar#employee-field-select(name="stype" style="width:fit-content;")
-          each val in ['username', 'firstname', 'lastname', 'phone', 'email']
+          each val in ['username', 'firstname', 'lastname', 'phone', 'email', 'role']
             option(value=val) #{val}
         input.search-input#employee-search-kw(type="text" name="search" placehold="please enter keyword")
         button.search-btn#search-employee Search

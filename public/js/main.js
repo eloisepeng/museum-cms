@@ -103,6 +103,33 @@ $('#delCollection').click(function () {
   });
 });
 
+$('#changePw').click(async function () {
+  const username = $(this).attr('username');
+  const { value: newPassword } = await swal({
+    title: 'New Password',
+    text: `Username: ${username}`,
+    input: 'password',
+    inputPlaceholder: 'Enter new password',
+    background: 'rgb(44, 49, 51)',
+    confirmButtonColor: '#d33',
+    confirmButtonText: 'Submit',
+  });
+  $.ajax({
+    url: '/employees/resetpw',
+    type: 'POST',
+    data: {
+      username,
+      newPassword,
+    },
+    error(err) {
+      console.log(err);
+    },
+    success() {
+      window.location.href = '/employees';
+    },
+  });
+});
+
 // deactivate a client
 $('#delContact').click(function () {
   deleteEntry(this, 'cid', '/contacts');

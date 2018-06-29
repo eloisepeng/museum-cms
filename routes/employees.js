@@ -133,6 +133,24 @@ router.post('/signup', utils.requireLogin, (req, res, next) => {
   }
 });
 
+// // render resetPw page
+// router.get('/resetpw', utils.requireLogin, (req, res) => {
+//   Employees.findByUsername(req.body.username, (err, e) => {
+//     if (err) res.send(err);
+//     res.render('resetPw', { e });
+//   });
+// });
+
+// handle login page
+router.post('/resetpw', utils.requireLogin, (req, res) => {
+  Employees.findByUsername(req.body.username, async (err, e) => {
+    if (err) res.send(err);
+    await e.setPassword(req.body.newPassword);
+    e.save();
+    return res.redirect('/employees');
+  });
+});
+
 // render signout page
 router.get('/logout', (req, res) => {
   req.logout();

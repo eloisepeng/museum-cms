@@ -17,7 +17,8 @@
     "no-underscore-dangle": 0,
     "one-var": 0,
     "max-len": 0,
-    "no-use-before-define": 0
+    "no-use-before-define": 0,
+    "prefer-arrow-callback": 0
   },
 
   "parser": "babel-eslint"

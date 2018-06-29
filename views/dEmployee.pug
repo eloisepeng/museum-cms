@@ -5,6 +5,7 @@ block content
     .left.std-height.no-padding
       h2 Username: #{e.username}
     .right.std-height.no-padding
+      button.upd-button#changePw(username=e.username) Change Password
       button.del-button#deleteUser(uid=e._id) Delete? Think carefully!!!
   form(action=`/employees/update/${e._id}` method="POST")
     label First Name
