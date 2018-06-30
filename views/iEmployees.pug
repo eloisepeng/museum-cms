@@ -8,7 +8,7 @@ block content
       a.right.no-padding(href='/employees/signup') Employee Signup 
         img.icon(src="/img/plus.png" alt="Plus")
     .container
-      .search-area.right.no-padding
+      .search-area
         select.list-select-bar#employee-field-select(name="stype" style="width:fit-content;")
           each val in ['username', 'firstname', 'lastname', 'phone', 'email', 'role']
             option(value=val) #{val}

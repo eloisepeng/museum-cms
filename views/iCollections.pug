@@ -8,7 +8,7 @@ block content
       a.right.no-padding(href='/collections/add') New Collection  
         img.icon(src="/img/plus.png" alt="Plus")
     .container
-      .search-area.right.no-padding
+      .search-area
         select.list-select-bar#collection-field-select(name="stype" style="width:fit-content;")
           each val in ['pid', 'name', 'description', 'materials', 'condition', 'dating', 'archaeoSite', 'location']
             option(value=val) #{val}

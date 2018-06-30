@@ -5,11 +5,14 @@ block content
     .left.std-height.no-padding#detail-head
       h2 Name: #{c.name}
     .right.std-height.no-padding
-      button.upd-button#updCollection(cid=c._id) Update
-      button.del-button#delCollection(cid=c._id) Delete? Think carefully!!!
+      if (user.role === 'Admin')
+        button.upd-button#updCollection(cid=c._id) Update
+        button.del-button#delCollection(cid=c._id) Delete? Think carefully!!!
+      if (user.role === 'Inspector')
+        button.upd-button#repInspection(cid=c._id) Write Inspection Report
   .container
     .profile-img
-      img(src=c.imgUrl alt=c.name)
+      img.img-dim(src=c.imgUrl alt=c.name)
     .profile-detail
       ul
         li PID: #{c.pid}

@@ -10,7 +10,7 @@ block content
       a.right.no-padding(href='/contacts/add') New Contact 
         img.icon(src="/img/plus.png" alt="Plus")
     .container
-      .search-area.right.no-padding
+      .search-area
         select.list-select-bar#contact-field-select(name="stype" style="width:fit-content;")
           each val in ['firstname', 'lastname', 'phone', 'email']
             option(value=val) #{val}

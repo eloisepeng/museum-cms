@@ -52,6 +52,21 @@ $('#updCollection').click(function () {
   });
 });
 
+// add a inspection report
+// $('#repInspection').click(function () {
+//   const id = $(this).attr('cid');
+//   $.ajax({
+//     url: `/collections/report/${id}`,
+//     type: 'GET',
+//     error(errr) {
+//       console.log(errr);
+//     },
+//     success() {
+//       window.location.href = `/collections/report/${id}`;
+//     },
+//   });
+// });
+
 // deaccesse a collection item
 $('#delCollection').click(function () {
   const id = $(this).attr('cid');

@@ -4,6 +4,7 @@ const router = express.Router();
 const utils = require('../utils');
 
 const Collections = require('../models/cataloging');
+// const Acquisition = require('../models/acquisition');
 
 // handle get and return all the collection items
 router.get('/', utils.requireLogin, (req, res, next) => {
@@ -69,6 +70,22 @@ router.post('/update/:id', utils.requireLogin, (req, res, next) => {
     res.redirect('/collections');
   });
 });
+
+// // render collection report page
+// router.get('/report/:id', utils.requireLogin, (req, res, next) => {
+//   Collections.findById(req.params.id, (err, c) => {
+//     if (err) return next(err);
+//     res.render('report', { c });
+//   });
+// });
+
+// // handle report collection
+// router.post('/report/:id', utils.requireLogin, (req, res, next) => {
+//   Collections.findByIdAndUpdate(req.params.id, { $set: req.body }, (err) => {
+//     if (err) return next(err);
+//     res.redirect('/collections');
+//   });
+// });
 
 // handle delete session
 router.post('/delete', utils.requireLogin, (req, res, next) => {

@@ -73,7 +73,8 @@ input {
   width: fit-content;
   margin: 2px;
   height: 1.5rem;
-
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 button {
@@ -112,6 +113,10 @@ footer {
   width: 100%;
   background-color: rgb(10, 8, 8);
   box-shadow: 0px 0px 0px 2px rgb(150, 146, 146);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .inner-container {
@@ -124,6 +129,9 @@ footer {
   min-width: 17rem;
 }
 
+/* .nav-col-container {
+} */
+
 .nav-bar-col {
   min-height: 100%;
   height: auto;
@@ -132,6 +140,13 @@ footer {
   background-color: #0a0d0b;
   box-shadow: 0px 0px 1px 1px #B4B4B4;
   float: left;
+  position: fixed;
+  top: 3.1rem;
+  left: 2rem;
+}
+
+.resize {
+  font-size: 0.9rem;
 }
 
 .nav-right {
@@ -169,6 +184,12 @@ footer {
   padding-right: 3.5rem;
 }
 
+.search-area {
+	width: 100%;
+  float: right;
+  text-align: right;
+}
+
 .center {
   text-align: center;
 }
@@ -182,6 +203,7 @@ footer {
   min-height: 100%;
   box-shadow: 0px 0px 1px 1px #B4B4B4;
   padding: 1rem;
+  margin-top: 3rem;
 }
 
 .icon {
@@ -195,13 +217,14 @@ footer {
 
 .index-container {
   background-color: black;
+  height: 100%;
+  z-index: -1;
 }
 
 .index {
-  width: 84%;
-  height: 90%;
-  opacity: 0.5;
-
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
 }
 
 .index-footer {
@@ -257,7 +280,13 @@ footer {
 
 .search-input {
   height: 1.5rem;
+  border: 1rem;
+  border: 1px solid #ccc;
 }
+/* 
+.input-radius {
+  border-radius: 4px;
+} */
 
 .grey {
   color:#9e9e9e;
@@ -310,6 +339,10 @@ footer {
   border-style: solid;
 }
 
+.img-dim {
+  width: 23rem;
+}
+
 .profile-detail {
   width: 65%;
   float: right;
@@ -350,6 +383,6 @@ footer {
   padding: 0.8rem;
 }
 
-#detail-head {
+/* #detail-head {
   padding-left: 5rem;
-}
+} */

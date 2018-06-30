@@ -12,7 +12,7 @@ const AcquisitionSchema = new Schema({
   condictionReport: [{
     inspector: { type: Schema.Types.ObjectId, ref: 'Employee' },
     date: Date,
-    condiction: String,
+    condition: String,
     conservationNotes: String,
   }],
 });

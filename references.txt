@@ -1,13 +1,12 @@
 references: 
 
+##CMS Wiki
 https://en.wikipedia.org/wiki/Collections_management_(museum)
-
-http://326gtd123dbk1xdkdm489u1q.wpengine.netdna-cdn.com/wp-content/uploads/2016/11/spectrum_4_03.pdf
 
 ##logo
 https://www.behance.net/gallery/26501779/Branding-The-Grand-Egyptian-Museum
 
-##global egyptian museum
+##global egyptian museum database
 http://www.globalegyptianmuseum.org/
 
 ##ui design

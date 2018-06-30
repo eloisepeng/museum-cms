@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .form-header.grey
+    .left.std-height.no-padding
+      h2 Name: #{c.name}
+      h5 PID: #{c.pid}
+  form(action=`/collections/report/${c._id}` method="POST")
+    label Condition
+      br
+      each val in ['excellent', 'good', 'fair', 'poor']
+        label #[input(type="radio" name="condictionReport.condition" value=val)] #{val}
+        br
+    label Conservation Notes
+    br
+    textarea(name="condictionReport.conservationNotes" rows="10" cols="150")
+    br
+    input(name="condictionReport.inspector" value=user._id type="hidden")
+    input.submit-button(type="submit")
