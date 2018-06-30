@@ -340,7 +340,7 @@ footer {
 }
 
 .img-dim {
-  width: 23rem;
+  max-width: 19rem;
 }
 
 .profile-detail {
