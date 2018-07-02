@@ -8,11 +8,11 @@ block content
       a.right.no-padding(href='/employees/signup') Employee Signup 
         img.icon(src="/img/plus.png" alt="Plus")
     .container
-      .search-area
+      form.search-area(method='get' action='/employees/search')
         select.list-select-bar#employee-field-select(name="stype" style="width:fit-content;")
           each val in ['username', 'firstname', 'lastname', 'phone', 'email', 'role']
             option(value=val) #{val}
-        input.search-input#employee-search-kw(type="text" name="search" placehold="please enter keyword")
+        input.search-input#employee-search-kw(type="text" name="search" placeholder="please enter keyword")
         button.search-btn#search-employee Search
           img.icon(src="/img/search.png" alt="Search")
       table
@@ -41,9 +41,3 @@ block content
             td=e.role
             td=moment(e.lastLogin).format('lll')
             td=moment(e.createdAt).format('ll')
-block script
-  script(src="/js/search/employees.js")
-  script.
-    $(function(){
-      employees.search();
-    });

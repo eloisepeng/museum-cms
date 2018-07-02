@@ -35,10 +35,10 @@ router.get('/', utils.requireLogin, (req, res) => {
 * FROM ET
 * handle search by regex and case insensitve
 * */
-router.get('/search/:name/:value', utils.requireLogin, (req, res, next) => {
+router.get('/search', utils.requireLogin, (req, res, next) => {
   const query = {};
-  query[req.params.name] = {
-    $regex: req.params.value,
+  query[req.query.stype] = {
+    $regex: req.query.search,
     $options: 'i', // case insensitivity to match upper and lower cases. For an example, see
   };
   Employees.find(query, (err, employees) => {
