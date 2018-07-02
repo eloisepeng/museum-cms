@@ -38,14 +38,15 @@ $(document).ready(() => {
       success() {
         // document.getElementById('rdrmsg').innerHTML = 'Redirecting..3s';
         const countDownDate = new Date().getTime() + 3000;
+        const redirectMsgId = $('#rdrmsg');
         const x = setInterval(() => {
           const now = new Date().getTime();
           const d = countDownDate - now;
           const s = Math.floor((d % (1000 * 60)) / 1000);
-          document.getElementById('rdrmsg').innerHTML = `Redirecting..${s}s`;
+          redirectMsgId.html(`Redirecting..${s}s`);
           if (d < 0) {
             clearInterval(x);
-            document.getElementById('rdrmsg').innerHTML = 'if the page doesnot redirect, click here';
+            redirectMsgId.html('if the page doesnot redirect, click here');
           }
         }, 0.001);
         window.location.href = '/collections';
