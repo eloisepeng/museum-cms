@@ -48,6 +48,25 @@ router.get('/search', utils.requireLogin, (req, res, next) => {
   });
 });
 
+/*
+* FROM ET using jquery
+* handle search by regex and case insensitve
+* */
+router.post('/search/jquery', utils.requireLogin, (req, res, next) => {
+  const { key, value } = req.body;
+  const query = {};
+  query[key] = {
+    $regex: value,
+    $options: 'i', // case insensitivity to match upper and lower cases. For an example, see
+  };
+
+  Employees.find(query, (err, employees) => {
+    if (err) return next(err);
+    employees = eSort(employees);
+    res.json({ employees, count: employees.length });
+  });
+});
+
 // handle search (need exact input)
 // router.get('/search/:name/:value', utils.requireLogin, (req, res, next) => {
 //   const o = {};

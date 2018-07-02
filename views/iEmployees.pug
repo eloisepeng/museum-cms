@@ -2,13 +2,13 @@ extends layout
 
 block content
   .body-container
-    h2 Employees 
-      if (count) 
-        | (#{count})
+    h2 Employees (
+      span#count=count
+      |)
       a.right.no-padding(href='/employees/signup') Employee Signup 
         img.icon(src="/img/plus.png" alt="Plus")
     .container
-      form.search-area(method='get' action='/employees/search')
+      .search-area
         select.list-select-bar#employee-field-select(name="stype" style="width:fit-content;")
           each val in ['username', 'firstname', 'lastname', 'phone', 'email', 'role']
             option(value=val) #{val}
@@ -41,3 +41,9 @@ block content
             td=e.role
             td=moment(e.lastLogin).format('lll')
             td=moment(e.createdAt).format('ll')
+block script
+  script(src='js/search/employees.js')
+  script.
+    $(function(){
+        employees.search();
+    });
