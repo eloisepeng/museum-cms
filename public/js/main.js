@@ -1,38 +1,66 @@
+const fields = {};
+fields.employees = {
+  id: {
+    select: $('#employee-field-select'),
+    search: $('#employee-search-kw'),
+  },
+};
+
 $('#search-employee').click(() => {
+  // used for both ajax url and redirect
+  const url = `/employees/search/${fields.employees.id.select.val()}/${fields.employees.id.search.val()}`;
+
   $.ajax({
-    url: `/employees/search/${document.getElementById('employee-field-select').value}/${document.getElementById('employee-search-kw').value}`,
+    url,
     type: 'GET',
     error(errr) {
       console.log(errr);
     },
     success() {
-      window.location.href = `/employees/search/${document.getElementById('employee-field-select').value}/${document.getElementById('employee-search-kw').value}`;
+      window.location.href = url;
     },
   });
 });
+
+fields.contacts = {
+  id: {
+    select: $('#contact-field-select'),
+    search: $('#contact-search-kw'),
+  },
+};
 
 $('#search-contact').click(() => {
+  const url = `/contacts/search/${fields.contacts.id.select.val()}/${fields.contacts.id.search.val()}`;
+
   $.ajax({
-    url: `/contacts/search/${document.getElementById('contact-field-select').value}/${document.getElementById('contact-search-kw').value}`,
+    url,
     type: 'GET',
     error(errr) {
       console.log(errr);
     },
     success() {
-      window.location.href = `/contacts/search/${document.getElementById('contact-field-select').value}/${document.getElementById('contact-search-kw').value}`;
+      window.location.href = url;
     },
   });
 });
 
+
+fields.collections = {
+  id: {
+    select: $('#collection-field-select'),
+    search: $('#collection-search-kw'),
+  },
+};
 $('#search-collection').click(() => {
+  const url = `/collections/search/${fields.collections.id.select.val()}/${fields.collections.id.search.val()}`;
   $.ajax({
-    url: `/collections/search/${document.getElementById('collection-field-select').value}/${document.getElementById('collection-search-kw').value}`,
+    url,
     type: 'GET',
     error(errr) {
       console.log(errr);
     },
     success() {
-      window.location.href = `/collections/search/${document.getElementById('collection-field-select').value}/${document.getElementById('collection-search-kw').value}`;
+      window.location.href = url;
     },
   });
 });
