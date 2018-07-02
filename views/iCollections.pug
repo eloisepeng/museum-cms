@@ -28,3 +28,9 @@ block content
               li.profile-pid=c.pid
               li=c.location
               li=c.condiction
+block script
+  script(src="/js/search/collections.js")
+  script.
+    $(function(){
+      collections.search();
+    });

@@ -43,3 +43,9 @@ block content
             =`${c.address.street}, ${c.address.city}, ${c.address.province}, ${c.address.country}, ${c.address.zip}`
           td=c.status
           td=moment(c.createdAt).format('ll')
+block script
+  script(src="/js/search/contacts.js")
+  script.
+    $(function(){
+      contacts.search();
+    });
