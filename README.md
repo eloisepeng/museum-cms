@@ -9,4 +9,6 @@ A museum collection managerment system (CMS) with restrict access.
 3. Install dependencies: `npm install`.
 4. Run node server: `node app` or `nodemon app` if you have installed `nodemon`.
 
-### Host: http://localhost:3000
+### Host: http://localhost:3005
+use Username: admin, Password: admin to login as Admin
+and Username: inspector, Password: inspector to login as Inspector to play. 
